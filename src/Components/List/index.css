@@ -1,0 +1,9 @@
+list {
+   padding: 40px calc(50% - 496px); 
+}
+
+.posts{
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 20px;
+}
