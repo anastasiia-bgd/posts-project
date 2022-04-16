@@ -1,18 +1,14 @@
 import React from 'react'
-import Card from '../Card'
+import {Card}  from '../Card';
 import './index.css'
-import data from '../../data.json';
 
-const List = () => {
-
-  return (
-   
-    <div className='posts'>
-          
-        {data.map(el => <Card tags ={el.tags} key={el.id} text={el.text}/>)}
-  
-    </div>
-        
+const List = ({list}) => {
+  return ( 
+  <div className='posts'> 
+  {list.map((post) => 
+    (<Card key={post._id} postItem={post}/>
+  ))};
+</div>
   )
 }
 

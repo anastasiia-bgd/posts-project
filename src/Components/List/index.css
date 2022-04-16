@@ -1,8 +1,6 @@
-list {
-   padding: 40px calc(50% - 496px); 
-}
-
 .posts{
+   width: 100%;
+   padding: 40px calc(50% - 496px); 
 display: grid;
 grid-template-columns: repeat(3, 1fr);
 gap: 20px;

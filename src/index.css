@@ -8,7 +8,17 @@ html {
 }
 body {
     font-family: 'Nunito', 'Arial', 'Helvetica', sans-serif;
-} 
+}
+.info{
+   
+   padding: 40px calc(50% - 496px); 
+    
+    margin: 10px;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+
 /* .appContainer {
     display: flex;
     flex-direction: column;

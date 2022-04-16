@@ -1,9 +1,11 @@
 import React from 'react'
-
+export const click = () => {
+      alert('Есть контакт!')
+  }
 export const Button = () => {
   return (
     <div>
-        <button>Click</button>
+        <button onClick={click}>Click</button>
     </div>
   )
 }
