@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './index.css'
 
 import { Card as CardMUI } from '@mui/material';
@@ -13,9 +13,7 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import api from '../../utils/api';
 
 export const Card = ({ postItem, isItLike, setLike, like}) => {
-  
-  
-
+  const [likeCount, setLikeCount] = useState(postItem.likes.length)
   const writeLS = (key, value) => {
     const storage = JSON.parse(localStorage.getItem(key)) || [];
     storage.push(value)
@@ -33,7 +31,8 @@ export const Card = ({ postItem, isItLike, setLike, like}) => {
     setLike(((prevState) => [...prevState, postItem._id]))
     api.showLike(postItem._id)
       .then(() => {
-        alert('Like!')
+       console.log('Like!')
+        window.location.reload()
       })
       .catch(() => {
         alert('UPS!')
@@ -45,12 +44,14 @@ export const Card = ({ postItem, isItLike, setLike, like}) => {
     setLike((prevState) => prevState.filter((itemID) => postItem._id !== itemID));
     api.deleteLike(postItem._id)
       .then(() => {
-        alert('Delete Like');
+        console.log('Delete Like');
+        window.location.reload()
       })
       .catch(() => {
         alert('UPS!');
       })
   }
+ 
   
   return (
     <CardMUI sx={{ maxWidth: 345 }}>
@@ -73,13 +74,17 @@ export const Card = ({ postItem, isItLike, setLike, like}) => {
         {isItLike ? (
           <IconButton aria-label="add to favorites" onClick={removeLike} >
             <FavoriteIcon color='warning'/> 
-            <Typography variant="body2" color="text.secondary">
-          {like.length}
+            <Typography >
+            {postItem.likes.length}
            </Typography>
           </IconButton>
         ) : (
           <IconButton aria-label="add to favorites" onClick={addLike}>
             <FavoriteBorderOutlinedIcon />
+            <Typography >
+          {postItem.likes.length}
+          
+           </Typography>
           </IconButton>
         )}
       </CardContent>
