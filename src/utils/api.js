@@ -42,6 +42,15 @@ return fetch(`${this._url}/posts/likes/${itemID}`,{
             }
         }).then(onResponce)
             }
+    
+    deletePost(postID) {
+        return fetch(`${this._url}/posts/${postID}`, {
+            method: "DELETE",
+            headers: {
+                authorization: `Bearer ${this._token}`,
+            }
+        }).then(onResponce)
+    }
 //     search(searchQuery) {
 // return fetch(`${this._url}/products/search?query=${searchQuery}`, {
 //     headers: {

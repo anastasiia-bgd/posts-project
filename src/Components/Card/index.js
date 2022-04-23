@@ -14,6 +14,9 @@ import api from '../../utils/api';
 
 export const Card = ({ postItem, isItLike, setLike, like}) => {
   const [likeCount, setLikeCount] = useState(postItem.likes.length)
+  
+
+
   const writeLS = (key, value) => {
     const storage = JSON.parse(localStorage.getItem(key)) || [];
     storage.push(value)
@@ -31,7 +34,6 @@ export const Card = ({ postItem, isItLike, setLike, like}) => {
     setLike(((prevState) => [...prevState, postItem._id]))
     api.showLike(postItem._id)
       .then(() => {
-       console.log('Like!')
         window.location.reload()
       })
       .catch(() => {
@@ -45,11 +47,20 @@ export const Card = ({ postItem, isItLike, setLike, like}) => {
     api.deleteLike(postItem._id)
       .then(() => {
         console.log('Delete Like');
+    
         window.location.reload()
       })
       .catch(() => {
         alert('UPS!');
       })
+  }
+  const handleClick = () => {
+    api.deletePost(postItem._id)
+    .then((data) => {
+      alert('Пост удален')
+      window.location.reload()
+    })
+    .catch(err => alert("UPS"))
   }
  
   
@@ -57,6 +68,9 @@ export const Card = ({ postItem, isItLike, setLike, like}) => {
     <CardMUI sx={{ maxWidth: 345 }}>
 
       <CardContent>
+      <Typography gutterBottom variant="h3" component="div">
+          <Button onClick={handleClick}>Удалить</Button>
+        </Typography>
         <Typography gutterBottom variant="h6" component="div">
           {postItem.title}
         </Typography>
